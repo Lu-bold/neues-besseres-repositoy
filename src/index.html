@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Multiple Choice Quiz</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="styles/style.css">
+  <!-- SEO Enhancements -->
+  <meta name="description" content="A fun and interactive multiple-choice quiz with a leaderboard to track top players.">
+  <meta name="keywords" content="quiz, multiple choice, leaderboard, fun, interactive">
+  <meta name="author" content="Your Name">
+</head>
+<body>
+    <div class="container mt-5" >
+        <h1 class="text-center mb-4">Multiple Choice Quiz</h1>
+        <div id="player-input" class="mb-4" style="display: block;">
+            <div class="card">
+                <div class="card-body">
+                    <h2 class="card-title text-center">Enter Your Name</h2>
+                    <form id="name-form">
+                        <div class="form-group">
+                            <!-- Placeholder Text Customization -->
+                            <input type="text" class="form-control" id="player-name" placeholder="Enter your name to begin the quiz!" required>
+                            <small id="name-error" class="form-text text-danger" style="display: none;">Please enter your name.</small>
+                        </div>
+                         <div class="form-group">
+                            <!-- Start button -->
+                            <button id="start-button" type="submit" class="btn btn-primary btn-block">Start Quiz</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        
+        <div id="quiz-container" class="card" style="display: none;">
+            <div class="card-body">
+
+                <h1 class="card-title text-center">Player Name</h1>
+                <!-- Question display -->
+                <div id="info-container" class="mb-4">
+                    <label for="questionCategory" class="text-muted">Category:</label>
+                    <h3 id="question-category" class="text-center">General Knowledge</h3>
+
+                    <label for="questionDifficulty" class="text-muted">Difficulty:</label>
+                    <h3 id="question-difficulty" class="text-center">Easy</h3>
+                </div>
+
+                <div id="question-container" class="mb-4">
+                    <h3 id="question-text">Question goes here</h3>
+                    <div class="progress mb-3">
+                        <div id="progress-bar" class="progress-bar" role="progressbar" style="width: 0%"></div>
+                    </div>
+                    <p id="question-number" class="text-right">Question 1 of 10</p>
+                </div>
+                
+                <!-- Options -->
+                <div id="options-container" class="mb-4">
+                    <div class="list-group">
+                        <button class="list-group-item list-group-item-action option" data-index="0">Option 1</button>
+                        <button class="list-group-item list-group-item-action option" data-index="1">Option 2</button>
+                        <button class="list-group-item list-group-item-action option" data-index="2">Option 3</button>
+                        <button class="list-group-item list-group-item-action option" data-index="3">Option 4</button>
+                    </div>
+                </div>
+                
+                <!-- Result feedback -->
+                <div id="result-feedback" class="alert" style="display: none;">
+                    <p id="feedback-text">Correct! Well done.</p>
+                </div>
+                
+                <!-- Next button -->
+                <button id="next-button" class="btn btn-primary float-right" style="display: none;">Next Question</button>
+                
+                <!-- Final results -->
+                <div id="final-results" class="text-center" style="display: none;">
+                    <h2>Quiz Complete!</h2>
+                    <div class="card mb-4">
+                        <div class="card-body">
+                        <h3>Your Score</h3>
+                        <h4 id="score-display">0 / 10</h4>
+                        <p id="completion-time">Time: 0 seconds</p>
+                        </div>
+                    </div>
+                    <button id="restart-button" class="btn btn-primary mr-2">Restart Quiz</button>
+                    <button id="home-button" class="btn btn-secondary">Back to Home</button>
+                </div>
+            </div>
+        </div>
+        
+        <div id="leaderboard" class="mt-5">
+            <!-- Leaderboard table -->
+            <div class="card">
+                <h2>Leaderboard</h2>
+                <div class="card-body">
+                    <!-- Mobile Responsiveness -->
+                    <div class="table-responsive">
+                        <table class="table table-striped table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Rank</th>
+                                    <th>Player</th>
+                                    <th>High Score</th>
+                                </tr>
+                            </thead>
+                            <tbody id="leaderboard-body">
+                                <!-- Leaderboard entries will be inserted here by JavaScript -->
+                                <!-- Dynamic Leaderboard Message -->
+                                <tr id="no-scores-message">
+                                   <td colspan="5" class="text-center">No scores yet. Be the first!</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Loading Optimization -->
+    <script type="module" src="../dist/main.js" defer></script>
+</body>
+</html>

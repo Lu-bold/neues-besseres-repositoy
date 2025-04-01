@@ -1,0 +1,122 @@
+/* General body styling */
+body {
+    background-color: #ffe5ec; /* Light pink background for a soft look */
+    font-family: 'Arial', sans-serif;
+    color: #333; /* Neutral text color for readability */
+    margin: 0;
+    padding: 0;
+}
+
+/* Card styling */
+.card {
+    background-color: #ffc2d1; /* Slightly darker pink for cards */
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+}
+
+/* Buttons */
+.btn-primary {
+    background-color: #ff8fab; /* Vibrant pink for primary buttons */
+    border: none;
+    color: white;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #fb6f92; /* Slightly darker pink on hover */
+}
+
+.btn-secondary {
+    background-color: #ffb3c6; /* Softer pink for secondary buttons */
+    border: none;
+    color: white;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.btn-secondary:hover {
+    background-color: #ff8fab; /* Slightly darker pink on hover */
+}
+
+/* Input fields */
+input.form-control {
+    border: 2px solid #ffb3c6;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+input.form-control:focus {
+    border-color: #ff8fab;
+    box-shadow: 0 0 5px rgba(255, 143, 171, 0.5);
+    outline: none;
+}
+
+/* Leaderboard table */
+.table {
+    background-color: #ffc2d1;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.table th {
+    background-color: #ffb3c6;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+}
+
+.table td {
+    text-align: center;
+    padding: 10px;
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: #ffe5ec;
+}
+
+.table-striped tbody tr:nth-of-type(even) {
+    background-color: #ffc2d1;
+}
+
+/* Progress bar */
+.progress-bar {
+    background-color: #fb6f92;
+}
+
+/* Alerts */
+.alert {
+    border-radius: 5px;
+    padding: 15px;
+    font-weight: bold;
+}
+
+.alert-success {
+    background-color: #ffb3c6;
+    color: white;
+}
+
+.alert-danger {
+    background-color: #fb6f92;
+    color: white;
+}
+
+/* Headings */
+h1, h2, h3 {
+    color: #ff8fab;
+    text-align: center;
+}
+
+/* Footer */
+footer {
+    background-color: #ffc2d1;
+    color: #333;
+    text-align: center;
+    padding: 10px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    font-size: 14px;
+}
