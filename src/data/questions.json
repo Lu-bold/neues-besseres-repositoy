@@ -1,0 +1,212 @@
+[
+    {
+      "category": "Math",
+      "question": "What is 2 + 2?",
+      "options": [2, 3, 4, 5],
+      "answer": 4,
+      "difficulty": "easy"
+    },
+    {
+      "category": "Math",
+      "question": "What is 15% of 80?",
+      "options": [8, 12, 15, 20],
+      "answer": 12,
+      "difficulty": "medium"
+    },
+    {
+      "category": "Math",
+      "question": "What is the sum of the first 5 prime numbers?",
+      "options": [18, 27, 17, 28],
+      "answer": 28,
+      "difficulty": "hard"
+    },
+    {
+      "category": "Math",
+      "question": "What is 7 × 8?",
+      "options": [54, 56, 58, 62],
+      "answer": 56,
+      "difficulty": "easy"
+    },
+    {
+      "category": "Math",
+      "question": "If a rectangle has a perimeter of 34 cm and a width of 5 cm, what is its area?",
+      "options": [60, 85, 120, 170],
+      "answer": 120,
+      "difficulty": "medium"
+    },
+    {
+      "category": "Math",
+      "question": "If log₂(x) + log₂(x+6) = 5, what is the value of x?",
+      "options": [2, 4, 8, 10],
+      "answer": 2,
+      "difficulty": "hard"
+    },
+    {
+      "category": "Geography",
+      "question": "What is the capital of France?",
+      "options": ["London", "Berlin", "Paris", "Rome"],
+      "answer": "Paris",
+      "difficulty": "easy"
+    },
+    {
+      "category": "Geography",
+      "question": "Which of these countries is landlocked?",
+      "options": ["Vietnam", "Bolivia", "Thailand", "Portugal"],
+      "answer": "Bolivia",
+      "difficulty": "medium"
+    },
+    {
+      "category": "Geography",
+      "question": "Which of these countries does NOT border the Mediterranean Sea?",
+      "options": ["Portugal", "Spain", "Italy", "Greece"],
+      "answer": "Portugal",
+      "difficulty": "hard"
+    },
+    {
+      "category": "Geography",
+      "question": "What is the largest ocean on Earth?",
+      "options": ["Atlantic Ocean", "Indian Ocean", "Arctic Ocean", "Pacific Ocean"],
+      "answer": "Pacific Ocean",
+      "difficulty": "easy"
+    },
+    {
+      "category": "Geography",
+      "question": "Which country is both in Europe and Asia?",
+      "options": ["Russia", "Egypt", "Turkey", "Greece"],
+      "answer": "Turkey",
+      "difficulty": "medium"
+    },
+    {
+      "category": "Geography",
+      "question": "Which African country has the most pyramids?",
+      "options": ["Egypt", "Sudan", "Libya", "Algeria"],
+      "answer": "Sudan",
+      "difficulty": "hard"
+    },
+    {
+      "category": "History",
+      "question": "In what year did World War II end?",
+      "options": [1943, 1945, 1947, 1950],
+      "answer": 1945,
+      "difficulty": "easy"
+    },
+    {
+      "category": "History",
+      "question": "Who was the first female Prime Minister of the United Kingdom?",
+      "options": ["Queen Victoria", "Margaret Thatcher", "Theresa May", "Angela Merkel"],
+      "answer": "Margaret Thatcher",
+      "difficulty": "medium"
+    },
+    {
+      "category": "History",
+      "question": "The ancient city of Byzantium later became known as what city?",
+      "options": ["Athens", "Rome", "Constantinople", "Alexandria"],
+      "answer": "Constantinople",
+      "difficulty": "hard"
+    },
+    {
+      "category": "History",
+      "question": "Who was the first president of the United States?",
+      "options": ["Thomas Jefferson", "John Adams", "George Washington", "Abraham Lincoln"],
+      "answer": "George Washington",
+      "difficulty": "easy"
+    },
+    {
+      "category": "History",
+      "question": "In which year did the Berlin Wall fall?",
+      "options": [1985, 1987, 1989, 1991],
+      "answer": 1989,
+      "difficulty": "medium"
+    },
+    {
+      "category": "History",
+      "question": "The Defenestration of Prague in 1618 helped start which conflict?",
+      "options": ["The Hundred Years' War", "The Thirty Years' War", "The War of Spanish Succession", "The Napoleonic Wars"],
+      "answer": "The Thirty Years' War",
+      "difficulty": "hard"
+    },
+    {
+      "category": "Science",
+      "question": "What is the chemical symbol for water?",
+      "options": ["Wa", "H2O", "O2H", "WO"],
+      "answer": "H2O",
+      "difficulty": "easy"
+    },
+    {
+      "category": "Science",
+      "question": "Which planet has the most moons?",
+      "options": ["Jupiter", "Saturn", "Uranus", "Neptune"],
+      "answer": "Saturn",
+      "difficulty": "medium"
+    },
+    {
+      "category": "Science",
+      "question": "What is the Schwarzschild radius?",
+      "options": ["The radius of a white dwarf", "The radius of a black hole's event horizon", "The distance to the nearest star", "The radius of a neutron star"],
+      "answer": "The radius of a black hole's event horizon",
+      "difficulty": "hard"
+    },
+    {
+      "category": "Science",
+      "question": "What is the closest star to Earth?",
+      "options": ["Proxima Centauri", "Alpha Centauri", "Sirius", "The Sun"],
+      "answer": "The Sun",
+      "difficulty": "easy"
+    },
+    {
+      "category": "Science",
+      "question": "What is the hardest natural substance on Earth?",
+      "options": ["Titanium", "Platinum", "Diamond", "Graphene"],
+      "answer": "Diamond",
+      "difficulty": "medium"
+    },
+    {
+      "category": "Science",
+      "question": "Which subatomic particle is not found in the nucleus of an atom?",
+      "options": ["Proton", "Neutron", "Electron", "Meson"],
+      "answer": "Electron",
+      "difficulty": "hard"
+    },
+    {
+      "category": "Fun",
+      "question": "Which of these animals can't jump?",
+      "options": ["Cats", "Dogs", "Elephants", "Kangaroos"],
+      "answer": "Elephants",
+      "difficulty": "easy"
+    },
+    {
+      "category": "Fun",
+      "question": "What is the only food that never spoils?",
+      "options": ["Twinkies", "Honey", "Dark Chocolate", "Peanut Butter"],
+      "answer": "Honey",
+      "difficulty": "medium"
+    },
+    {
+      "category": "Fun",
+      "question": "How many dimples does an official golf ball have?",
+      "options": [336, 357, 366, 400],
+      "answer": 336,
+      "difficulty": "hard"
+    },
+    {
+      "category": "Fun",
+      "question": "What color is a polar bear's skin?",
+      "options": ["White", "Pink", "Black", "Yellow"],
+      "answer": "Black",
+      "difficulty": "easy"
+    },
+    {
+      "category": "Fun",
+      "question": "Which planet in our solar system rotates clockwise?",
+      "options": ["Earth", "Mars", "Jupiter", "Venus"],
+      "answer": "Venus",
+      "difficulty": "medium"
+    },
+    {
+      "category": "Fun",
+      "question": "What is the only letter that doesn't appear in any U.S. state name?",
+      "options": ["Q", "X", "Z", "B"],
+      "answer": "Q",
+      "difficulty": "hard"
+    }
+  ]
