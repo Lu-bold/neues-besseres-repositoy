@@ -47,7 +47,6 @@ export class ScoringService {
     }
     // Get the player's rank
     getRank() {
-        this.updateLeaderboard();
         return this.leaderboard.findIndex(player => player.name === this.playerName) + 1;
     }
     // Get the player's details

@@ -80,7 +80,6 @@ document.addEventListener('DOMContentLoaded', () => __awaiter(void 0, void 0, vo
             if (scoreDisplay)
                 scoreDisplay.textContent = `${scoringService.getScore()} / ${totalQuestions * 10}`;
             // Update leaderboard
-            scoringService.updateLeaderboard();
             updateLeaderboardUI();
             // Show restart and home buttons
             const restartButton = document.getElementById('restart-button');

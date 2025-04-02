@@ -44,7 +44,7 @@ export class ScoringService {
     public updateLeaderboard(): void {
         // Check if the player already exists in the leaderboard
         const existingPlayer = this.leaderboard.find(player => player.name === this.playerName);
-
+        
         if (existingPlayer) {
             // Update the score only if the new score is higher
             if (this.score > existingPlayer.score) {
@@ -61,7 +61,6 @@ export class ScoringService {
 
     // Get the player's rank
     public getRank(): number {
-        this.updateLeaderboard();
         return this.leaderboard.findIndex(player => player.name === this.playerName) + 1;
     }
 

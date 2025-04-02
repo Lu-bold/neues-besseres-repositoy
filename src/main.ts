@@ -75,7 +75,6 @@ document.addEventListener('DOMContentLoaded', async () => {
             if (scoreDisplay) scoreDisplay.textContent = `${scoringService.getScore()} / ${totalQuestions * 10}`;
 
             // Update leaderboard
-            scoringService.updateLeaderboard();
             updateLeaderboardUI();
 
             // Show restart and home buttons
