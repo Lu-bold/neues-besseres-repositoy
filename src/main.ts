@@ -135,8 +135,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         leaderboardBody.innerHTML = ''; // Clear existing entries
 
-        scoringService.updateLeaderboard();
-        console.log('Updated leaderboard:', scoringService.leaderboard); // Debugging
+        scoringService.updateLeaderboard(); // Update the leaderboard data
 
         scoringService.leaderboard.forEach((entry, index) => {
             const row = document.createElement('tr');
@@ -158,7 +157,8 @@ document.addEventListener('DOMContentLoaded', async () => {
         // Reset the quiz state
         currentQuestionIndex = 0;
         questionService.askedQuestions = []; // Reset asked questions
-        scoringService = new ScoringService(totalQuestions, playerName); // Re-initialize scoring
+        scoringService.reset(); // Reset the score, but keep the leaderboard intact
+
         const finalResults = document.getElementById('final-results');
         if (finalResults) {
             finalResults.style.display = 'none';

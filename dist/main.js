@@ -132,8 +132,7 @@ document.addEventListener('DOMContentLoaded', () => __awaiter(void 0, void 0, vo
             return;
         }
         leaderboardBody.innerHTML = ''; // Clear existing entries
-        scoringService.updateLeaderboard();
-        console.log('Updated leaderboard:', scoringService.leaderboard); // Debugging
+        scoringService.updateLeaderboard(); // Update the leaderboard data
         scoringService.leaderboard.forEach((entry, index) => {
             const row = document.createElement('tr');
             row.innerHTML = `
@@ -152,7 +151,7 @@ document.addEventListener('DOMContentLoaded', () => __awaiter(void 0, void 0, vo
         // Reset the quiz state
         currentQuestionIndex = 0;
         questionService.askedQuestions = []; // Reset asked questions
-        scoringService = new ScoringService(totalQuestions, playerName); // Re-initialize scoring
+        scoringService.reset(); // Reset the score, but keep the leaderboard intact
         const finalResults = document.getElementById('final-results');
         if (finalResults) {
             finalResults.style.display = 'none';
