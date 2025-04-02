@@ -40,7 +40,7 @@ export class ScoringService {
     }
 
     // Add the player's score to the leaderboard
-    public updateLeaderboard(leaderboard: { name: string; score: number }[]): void {
+    public updateLeaderboard(leaderboard: { name: string; score: number; percentage: number }[]): void {
         const percentage = this.calculatePercentage();
 
         // Check if the player already exists in the leaderboard

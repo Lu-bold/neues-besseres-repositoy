@@ -80,7 +80,7 @@ document.addEventListener('DOMContentLoaded', () => __awaiter(void 0, void 0, vo
                 optionsContainer.style.display = 'none';
             // Display the player's score and percentage
             if (scoreDisplay) {
-                const playerDetails = scoringService.getPlayerDetails();
+                const playerDetails = scoringService.getPlayerDetails(leaderboard);
                 scoreDisplay.textContent = `Score: ${playerDetails.score} points (${playerDetails.percentage}%)`;
             }
             // Update leaderboard

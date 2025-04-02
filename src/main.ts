@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const totalQuestions = 5; // Set the total number of questions
     let scoringService: ScoringService;
     let playerName: string = ''; // Store the player name
-    let leaderboard: { name: string; score: number }[] = [];
+    let leaderboard: { name: string; score: number; percentage: number }[] = [];
 
     await questionService.fetchQuestions();
 
@@ -76,7 +76,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
             // Display the player's score and percentage
             if (scoreDisplay) {
-                const playerDetails = scoringService.getPlayerDetails();
+                const playerDetails = scoringService.getPlayerDetails(leaderboard);
                 scoreDisplay.textContent = `Score: ${playerDetails.score} points (${playerDetails.percentage}%)`;
             }
 
