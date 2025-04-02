@@ -1,6 +1,6 @@
 import { UI } from './modules/ui.js';
 import { QuestionService } from './modules/questions.js';
-//import { ScoringService } from './modules/scoring.js';
+import { ScoringService } from './modules/scoring.js';
 
 document.addEventListener('DOMContentLoaded', async () => {
     const ui = new UI();
