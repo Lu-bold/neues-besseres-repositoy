@@ -13,6 +13,16 @@ export class QuestionService {
         this.askedQuestions = []; // Track asked questions
     }
     /**
+     * Shuffles an array in place
+     */
+    shuffleArray(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
+        }
+        return array;
+    }
+    /**
      * Fetches questions from the JSON file
      */
     fetchQuestions() {
@@ -22,7 +32,12 @@ export class QuestionService {
                 if (!response.ok) {
                     throw new Error(`Failed to fetch questions: ${response.status}`);
                 }
-                this.questions = yield response.json();
+                const allQuestions = yield response.json();
+                // Shuffle and select 2 easy, 2 medium, and 1 hard question
+                const easyQuestions = this.shuffleArray(allQuestions.filter(q => q.difficulty === 'easy')).slice(0, 2);
+                const mediumQuestions = this.shuffleArray(allQuestions.filter(q => q.difficulty === 'medium')).slice(0, 2);
+                const hardQuestions = this.shuffleArray(allQuestions.filter(q => q.difficulty === 'hard')).slice(0, 1);
+                this.questions = [...easyQuestions, ...mediumQuestions, ...hardQuestions];
                 this.askedQuestions = []; // Reset asked questions when fetching new set
                 return true;
             }

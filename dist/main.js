@@ -13,7 +13,7 @@ import { ScoringService } from './modules/scoring.js';
 document.addEventListener('DOMContentLoaded', () => __awaiter(void 0, void 0, void 0, function* () {
     const ui = new UI();
     const questionService = new QuestionService();
-    const totalQuestions = 10; // Set the total number of questions
+    const totalQuestions = 5; // Set the total number of questions
     let scoringService;
     let playerName = ''; // Store the player name
     yield questionService.fetchQuestions();
@@ -67,30 +67,31 @@ document.addEventListener('DOMContentLoaded', () => __awaiter(void 0, void 0, vo
             const finalResults = document.getElementById('final-results');
             const scoreDisplay = document.getElementById('score-display');
             const infoContainer = document.getElementById('info-container');
-            const questionContainer = document.getElementById('question-container'); // Get question container
-            const optionsContainer = document.getElementById('options-container'); // Get options container
+            const questionContainer = document.getElementById('question-container');
+            const optionsContainer = document.getElementById('options-container');
             if (finalResults)
                 finalResults.style.display = 'block';
             if (infoContainer)
-                infoContainer.style.display = 'none'; // Hide info container
+                infoContainer.style.display = 'none';
             if (questionContainer)
-                questionContainer.style.display = 'none'; // Hide question container
+                questionContainer.style.display = 'none';
             if (optionsContainer)
-                optionsContainer.style.display = 'none'; // Hide options container
-            if (scoreDisplay)
-                scoreDisplay.textContent = `${scoringService.getScore()} / ${totalQuestions * 10}`;
+                optionsContainer.style.display = 'none';
+            // Display the player's score and percentage
+            if (scoreDisplay) {
+                const playerDetails = scoringService.getPlayerDetails();
+                scoreDisplay.textContent = `Score: ${playerDetails.score} points (${playerDetails.percentage}%)`;
+            }
             // Update leaderboard
             scoringService.updateLeaderboard();
             updateLeaderboardUI();
             // Show restart and home buttons
             const restartButton = document.getElementById('restart-button');
             const homeButton = document.getElementById('home-button');
-            if (restartButton) {
+            if (restartButton)
                 restartButton.style.display = 'block';
-            }
-            if (homeButton) {
+            if (homeButton)
                 homeButton.style.display = 'block';
-            }
             return;
         }
         const currentQuestion = questionService.getRandomQuestion();
@@ -126,7 +127,7 @@ document.addEventListener('DOMContentLoaded', () => __awaiter(void 0, void 0, vo
                 button.onclick = () => {
                     const selectedAnswer = currentQuestion.options[index];
                     if (selectedAnswer === currentQuestion.answer) {
-                        scoringService.incrementScore(10); // Add 10 points for a correct answer
+                        scoringService.incrementScore(currentQuestion.difficulty); // Increment score based on difficulty
                         alert('Correct!');
                     }
                     else {
@@ -151,7 +152,7 @@ document.addEventListener('DOMContentLoaded', () => __awaiter(void 0, void 0, vo
             row.innerHTML = `
                 <td>${index + 1}</td>
                 <td>${entry.name}</td>
-                <td>${entry.score}</td>
+                <td>${entry.score} points (${entry.percentage}%)</td>
             `;
             leaderboardBody.appendChild(row);
         });
@@ -161,31 +162,40 @@ document.addEventListener('DOMContentLoaded', () => __awaiter(void 0, void 0, vo
         }
     }
     function restartQuiz() {
-        // Reset the quiz state
-        currentQuestionIndex = 0;
-        questionService.askedQuestions = []; // Reset asked questions
-        if (scoringService) {
-            scoringService.reset();
-        }
-        const finalResults = document.getElementById('final-results');
-        if (finalResults) {
-            finalResults.style.display = 'none';
-        }
-        const questionContainer = document.getElementById('question-container');
-        const optionsContainer = document.getElementById('options-container');
-        const infoContainer = document.getElementById('info-container');
-        if (questionContainer)
-            questionContainer.style.display = 'block';
-        if (optionsContainer)
-            optionsContainer.style.display = 'block';
-        if (infoContainer)
-            infoContainer.style.display = 'block';
-        // Hide restart button
-        const restartButton = document.getElementById('restart-button');
-        if (restartButton) {
-            restartButton.style.display = 'none';
-        }
-        loadQuestion(); // Load the first question
+        return __awaiter(this, void 0, void 0, function* () {
+            // Reset the quiz state
+            currentQuestionIndex = 0;
+            // Fetch and shuffle a new set of questions
+            yield questionService.fetchQuestions();
+            // Reset asked questions
+            questionService.askedQuestions = [];
+            // Reset scoring
+            if (scoringService) {
+                scoringService.reset();
+            }
+            // Hide final results
+            const finalResults = document.getElementById('final-results');
+            if (finalResults) {
+                finalResults.style.display = 'none';
+            }
+            // Show question and options containers
+            const questionContainer = document.getElementById('question-container');
+            const optionsContainer = document.getElementById('options-container');
+            const infoContainer = document.getElementById('info-container');
+            if (questionContainer)
+                questionContainer.style.display = 'block';
+            if (optionsContainer)
+                optionsContainer.style.display = 'block';
+            if (infoContainer)
+                infoContainer.style.display = 'block';
+            // Hide restart button
+            const restartButton = document.getElementById('restart-button');
+            if (restartButton) {
+                restartButton.style.display = 'none';
+            }
+            // Load the first question
+            loadQuestion();
+        });
     }
     function goToHome() {
         const playerInput = document.getElementById('player-input');
