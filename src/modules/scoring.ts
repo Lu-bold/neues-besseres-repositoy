@@ -42,7 +42,20 @@ export class ScoringService {
 
     // Add the player's score to the leaderboard
     public updateLeaderboard(): void {
-        this.leaderboard.push({ name: this.playerName, score: this.score });
+        // Check if the player already exists in the leaderboard
+        const existingPlayer = this.leaderboard.find(player => player.name === this.playerName);
+
+        if (existingPlayer) {
+            // Update the score only if the new score is higher
+            if (this.score > existingPlayer.score) {
+                existingPlayer.score = this.score;
+            }
+        } else {
+            // Add the player to the leaderboard if they don't already exist
+            this.leaderboard.push({ name: this.playerName, score: this.score });
+        }
+
+        // Sort the leaderboard by score in descending order
         this.leaderboard.sort((a, b) => b.score - a.score);
     }
 
