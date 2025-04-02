@@ -5,8 +5,15 @@ export class ScoringService {
         this.totalQuestions = totalQuestions;
         this.playerName = playerName;
     }
-    // Increment score for a correct answer
-    incrementScore(points) {
+    // Increment score based on difficulty
+    incrementScore(difficulty) {
+        let points = 0;
+        if (difficulty === 'easy')
+            points = 1;
+        else if (difficulty === 'medium')
+            points = 2;
+        else if (difficulty === 'hard')
+            points = 3;
         this.score += points;
         this.correctAnswers++;
     }
@@ -14,13 +21,10 @@ export class ScoringService {
     getScore() {
         return this.score;
     }
-    // Get the number of correct answers
-    getCorrectAnswers() {
-        return this.correctAnswers;
-    }
-    // Calculate the final score as a percentage
-    calculateFinalScore() {
-        return Math.round((this.correctAnswers / this.totalQuestions) * 100);
+    // Calculate the total score percentage
+    calculatePercentage() {
+        const maxPoints = 9; // Maximum possible points
+        return Math.round(((this.score) / maxPoints) * 100);
     }
     // Reset the score for a new game
     reset() {
@@ -29,17 +33,19 @@ export class ScoringService {
     }
     // Add the player's score to the leaderboard
     updateLeaderboard(leaderboard) {
+        const percentage = this.calculatePercentage();
         // Check if the player already exists in the leaderboard
         const existingPlayer = leaderboard.find(player => player.name === this.playerName);
         if (existingPlayer) {
             // Update the score only if the new score is higher
             if (this.score > existingPlayer.score) {
                 existingPlayer.score = this.score;
+                existingPlayer.percentage = percentage;
             }
         }
         else {
             // Add the player to the leaderboard if they don't already exist
-            leaderboard.push({ name: this.playerName, score: this.score });
+            leaderboard.push({ name: this.playerName, score: this.score, percentage });
         }
         // Sort the leaderboard by score in descending order
         leaderboard.sort((a, b) => b.score - a.score);
@@ -53,7 +59,8 @@ export class ScoringService {
         return {
             name: this.playerName,
             rank: this.getRank(leaderboard),
-            score: this.score
+            score: this.score,
+            percentage: this.calculatePercentage()
         };
     }
 }
