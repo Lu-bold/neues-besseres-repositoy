@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const ui = new UI();
     const questionService = new QuestionService();
     const totalQuestions = 10; // Set the total number of questions
-    const scoringService = new ScoringService(totalQuestions);
+    let scoringService: ScoringService;
 
     await questionService.fetchQuestions();
 
@@ -35,16 +35,29 @@ document.addEventListener('DOMContentLoaded', async () => {
             const playerNameDisplay = quizContainer?.querySelector('.card-title');
             if (playerNameDisplay) playerNameDisplay.textContent = playerName;
 
+            // Initialize ScoringService
+            scoringService = new ScoringService(totalQuestions, playerName);
+
             loadQuestion(); // Load the first question
 
             function loadQuestion() {
-                const currentQuestion = questionService.getRandomQuestion();
-                if (!currentQuestion) {
-                    // Show final results if no more questions
+                // Check if the maximum number of questions has been reached
+                if (currentQuestionIndex >= totalQuestions) {
+                    // Show final results
                     const finalResults = document.getElementById('final-results');
                     const scoreDisplay = document.getElementById('score-display');
                     if (finalResults) finalResults.style.display = 'block';
                     if (scoreDisplay) scoreDisplay.textContent = `${scoringService.getScore()} / ${totalQuestions * 10}`;
+
+                    // Update leaderboard
+                    scoringService.updateLeaderboard();
+                    updateLeaderboardUI();
+                    return;
+                }
+
+                const currentQuestion = questionService.getRandomQuestion();
+                if (!currentQuestion) {
+                    console.error('No more questions available.');
                     return;
                 }
 
@@ -89,6 +102,35 @@ document.addEventListener('DOMContentLoaded', async () => {
                 });
             }
         });
+    }
+
+    // Function to update the leaderboard UI
+    function updateLeaderboardUI(): void {
+        const leaderboardBody = document.getElementById('leaderboard-body');
+        if (!leaderboardBody) {
+            console.error('Leaderboard body element not found.');
+            return;
+        }
+
+        leaderboardBody.innerHTML = ''; // Clear existing entries
+
+        scoringService.updateLeaderboard();
+        console.log('Updated leaderboard:', scoringService.leaderboard); // Debugging
+
+        scoringService.leaderboard.forEach((entry, index) => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td>${index + 1}</td>
+                <td>${entry.name}</td>
+                <td>${entry.score}</td>
+            `;
+            leaderboardBody.appendChild(row);
+        });
+
+        const noScoresMessage = document.getElementById('no-scores-message');
+        if (noScoresMessage) {
+            noScoresMessage.style.display = scoringService.leaderboard.length === 0 ? 'table-row' : 'none';
+        }
     }
 
     ui.initializeEventListeners();

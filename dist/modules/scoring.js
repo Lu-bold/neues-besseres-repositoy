@@ -1,8 +1,10 @@
 export class ScoringService {
-    constructor(totalQuestions) {
+    constructor(totalQuestions, playerName) {
         this.score = 0;
         this.correctAnswers = 0;
         this.totalQuestions = totalQuestions;
+        this.playerName = playerName;
+        this.leaderboard = [];
     }
     // Increment score for a correct answer
     incrementScore(points) {
@@ -25,5 +27,23 @@ export class ScoringService {
     reset() {
         this.score = 0;
         this.correctAnswers = 0;
+    }
+    // Add the player's score to the leaderboard
+    updateLeaderboard() {
+        this.leaderboard.push({ name: this.playerName, score: this.score });
+        this.leaderboard.sort((a, b) => b.score - a.score);
+    }
+    // Get the player's rank
+    getRank() {
+        this.updateLeaderboard();
+        return this.leaderboard.findIndex(player => player.name === this.playerName) + 1;
+    }
+    // Get the player's details
+    getPlayerDetails() {
+        return {
+            name: this.playerName,
+            rank: this.getRank(),
+            score: this.score
+        };
     }
 }
