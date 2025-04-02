@@ -47,7 +47,7 @@ body {
 .btn-primary {
     background-color: #ff8fab; /* Vibrant pink for primary buttons */
     border: none;
-    color: white;
+
     width: 40%;
     margin: 0 auto;
     display: block;
@@ -58,7 +58,7 @@ body {
 /* Primary button hover effect */
 .btn-primary:hover {
     background-color: #fb6f92; /* Slightly darker pink on hover */
-    transform: scale(1.001); /* Make the button slightly bigger */
+    transform: scale(1.01); /* Make the button slightly bigger */
     box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2); /* Add a 3D shadow effect */
     transition: transform 0.3s ease, box-shadow 0.2s ease; /* Smooth transition */
 }
@@ -66,7 +66,7 @@ body {
 .btn-secondary {
     background-color: #ffb3c6; /* Softer pink for secondary buttons */
     border: none;
-    color: white;
+    margin-bottom: 10px;
     box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
     font-weight: bold;
     transition: background-color 0.3s ease;
@@ -75,7 +75,7 @@ body {
 /* Secondary button hover effect */
 .btn-secondary:hover {
     background-color: #ff8fab; /* Slightly darker pink on hover */
-    transform: scale(1.1); /* Make the button slightly bigger */
+    transform: scale(1.01); /* Make the button slightly bigger */
     box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2); /* Add a 3D shadow effect */
     transition: transform 0.2s ease, box-shadow 0.2s ease; /* Smooth transition */
 }
@@ -147,7 +147,7 @@ input.form-control:focus {
 
 .list-group-item, .list-group-item-action {
     background-color: #ffb3c6;
-    border: 1px solid #d7bdc4;
+    border: 1px solid #fb6f92;
     box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
     color: #802a40;
     border-radius: 10px;
@@ -158,7 +158,13 @@ input.form-control:focus {
     transform: scale(1.01);
     box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
-    color: white;
+}
+
+.list-group-item:focus, .list-group-item-action:focus {
+    outline: none;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+    background-color: #ffb3c6; /* Set the default background color */
+    color: #802a40; /* Set the default text color */
 }
 
 /* Alerts */

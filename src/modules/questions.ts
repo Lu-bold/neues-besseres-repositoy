@@ -8,7 +8,7 @@ export interface QuizQuestion {
 
 export class QuestionService {
     private questions: QuizQuestion[] = [];
-    private askedQuestions: QuizQuestion[] = []; // Track asked questions
+    public askedQuestions: QuizQuestion[] = []; // Track asked questions
 
     /**
      * Fetches questions from the JSON file
