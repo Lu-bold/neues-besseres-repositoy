@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const totalQuestions = 10; // Set the total number of questions
     let scoringService: ScoringService;
     let playerName: string = ''; // Store the player name
+    let leaderboard: { name: string; score: number }[] = [];
 
     await questionService.fetchQuestions();
 
@@ -146,9 +147,9 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         leaderboardBody.innerHTML = ''; // Clear existing entries
 
-        scoringService.updateLeaderboard(); // Update the leaderboard data
+        scoringService.updateLeaderboard(leaderboard); // Update the leaderboard data
 
-        scoringService.leaderboard.forEach((entry, index) => {
+        leaderboard.forEach((entry, index) => {
             const row = document.createElement('tr');
             row.innerHTML = `
                 <td>${index + 1}</td>
@@ -160,7 +161,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         const noScoresMessage = document.getElementById('no-scores-message');
         if (noScoresMessage) {
-            noScoresMessage.style.display = scoringService.leaderboard.length === 0 ? 'table-row' : 'none';
+            noScoresMessage.style.display = leaderboard.length === 0 ? 'table-row' : 'none';
         }
     }
 

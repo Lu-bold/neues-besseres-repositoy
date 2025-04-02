@@ -16,6 +16,7 @@ document.addEventListener('DOMContentLoaded', () => __awaiter(void 0, void 0, vo
     const totalQuestions = 10; // Set the total number of questions
     let scoringService;
     let playerName = ''; // Store the player name
+    let leaderboard = [];
     yield questionService.fetchQuestions();
     const nameForm = document.getElementById('name-form');
     let currentQuestionIndex = 0; // Track the current question index
@@ -144,8 +145,8 @@ document.addEventListener('DOMContentLoaded', () => __awaiter(void 0, void 0, vo
             return;
         }
         leaderboardBody.innerHTML = ''; // Clear existing entries
-        scoringService.updateLeaderboard(); // Update the leaderboard data
-        scoringService.leaderboard.forEach((entry, index) => {
+        scoringService.updateLeaderboard(leaderboard); // Update the leaderboard data
+        leaderboard.forEach((entry, index) => {
             const row = document.createElement('tr');
             row.innerHTML = `
                 <td>${index + 1}</td>
@@ -156,7 +157,7 @@ document.addEventListener('DOMContentLoaded', () => __awaiter(void 0, void 0, vo
         });
         const noScoresMessage = document.getElementById('no-scores-message');
         if (noScoresMessage) {
-            noScoresMessage.style.display = scoringService.leaderboard.length === 0 ? 'table-row' : 'none';
+            noScoresMessage.style.display = leaderboard.length === 0 ? 'table-row' : 'none';
         }
     }
     function restartQuiz() {

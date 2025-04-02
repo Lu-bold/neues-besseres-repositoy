@@ -4,7 +4,6 @@ export class ScoringService {
         this.correctAnswers = 0;
         this.totalQuestions = totalQuestions;
         this.playerName = playerName;
-        this.leaderboard = [];
     }
     // Increment score for a correct answer
     incrementScore(points) {
@@ -29,9 +28,9 @@ export class ScoringService {
         this.correctAnswers = 0;
     }
     // Add the player's score to the leaderboard
-    updateLeaderboard() {
+    updateLeaderboard(leaderboard) {
         // Check if the player already exists in the leaderboard
-        const existingPlayer = this.leaderboard.find(player => player.name === this.playerName);
+        const existingPlayer = leaderboard.find(player => player.name === this.playerName);
         if (existingPlayer) {
             // Update the score only if the new score is higher
             if (this.score > existingPlayer.score) {
@@ -40,20 +39,20 @@ export class ScoringService {
         }
         else {
             // Add the player to the leaderboard if they don't already exist
-            this.leaderboard.push({ name: this.playerName, score: this.score });
+            leaderboard.push({ name: this.playerName, score: this.score });
         }
         // Sort the leaderboard by score in descending order
-        this.leaderboard.sort((a, b) => b.score - a.score);
+        leaderboard.sort((a, b) => b.score - a.score);
     }
     // Get the player's rank
-    getRank() {
-        return this.leaderboard.findIndex(player => player.name === this.playerName) + 1;
+    getRank(leaderboard) {
+        return leaderboard.findIndex(player => player.name === this.playerName) + 1;
     }
     // Get the player's details
-    getPlayerDetails() {
+    getPlayerDetails(leaderboard) {
         return {
             name: this.playerName,
-            rank: this.getRank(),
+            rank: this.getRank(leaderboard),
             score: this.score
         };
     }
