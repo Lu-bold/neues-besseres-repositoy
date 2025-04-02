@@ -10,15 +10,20 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 export class QuestionService {
     constructor() {
         this.questions = [];
+        this.askedQuestions = []; // Track asked questions
     }
+    /**
+     * Fetches questions from the JSON file
+     */
     fetchQuestions() {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const response = yield fetch('./data/questions.json'); // Adjusted path
+                const response = yield fetch('./data/questions.json');
                 if (!response.ok) {
                     throw new Error(`Failed to fetch questions: ${response.status}`);
                 }
                 this.questions = yield response.json();
+                this.askedQuestions = []; // Reset asked questions when fetching new set
                 return true;
             }
             catch (error) {
@@ -27,11 +32,24 @@ export class QuestionService {
             }
         });
     }
+    /**
+     * Gets a random question that hasn't been asked yet
+     */
     getRandomQuestion() {
-        if (this.questions.length === 0) {
-            return null;
+        // Filter out already asked questions
+        const availableQuestions = this.questions.filter(question => !this.askedQuestions.includes(question));
+        if (availableQuestions.length === 0) {
+            // If all questions have been asked, reset the asked questions list
+            if (this.questions.length > 0) {
+                this.askedQuestions = [];
+                return this.getRandomQuestion(); // Recursive call to get a question
+            }
+            return null; // No questions available
         }
-        const randomIndex = Math.floor(Math.random() * this.questions.length);
-        return this.questions[randomIndex];
+        const randomIndex = Math.floor(Math.random() * availableQuestions.length);
+        const selectedQuestion = availableQuestions[randomIndex];
+        // Add the selected question to the asked questions list
+        this.askedQuestions.push(selectedQuestion);
+        return selectedQuestion;
     }
 }
