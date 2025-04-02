@@ -101,7 +101,7 @@ input.form-control {
     border-radius: 5px;
     text-align: center;
     padding: 10px;
-    width: 40%;
+    width: 80%;
     margin: 0 auto;
     display: block;
     background-color: #fff1f5; /* Light pink background for input fields */
@@ -194,4 +194,28 @@ footer {
     bottom: 0;
     width: 100%;
     font-size: 14px;
+}
+
+.text-3d {
+    font-size: 50px;
+    font-weight: bold;
+    color: #ffb3c6; /* Main text color */
+    text-shadow: 
+        1px 1px 0 #ff8fab, 
+        2px 2px 0 #d97a8c, 
+        3px 3px 0 #954152, 
+        4px 4px 0 #802a40, 
+        5px 5px 5px rgba(0, 0, 0, 0.5); /* Shadow for depth */
+    position: relative;
+}
+
+.text-3d::after {
+    content: attr(data-text); /* Duplicate the text */
+    position: absolute;
+    top: 100%; /* Position below the original text */
+    left: 0;
+    color: rgba(0, 0, 0, 0.3); /* Faded reflection */
+    transform: scaleY(-1); /* Flip vertically */
+    text-shadow: 0 2px 3px rgba(0, 0, 0, 0.2); /* Add shadow to reflection */
+    z-index: -1;
 }
