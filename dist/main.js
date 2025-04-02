@@ -69,10 +69,14 @@ document.addEventListener('DOMContentLoaded', () => __awaiter(void 0, void 0, vo
             // Update leaderboard
             scoringService.updateLeaderboard();
             updateLeaderboardUI();
-            // Show restart button
+            // Show restart and home buttons
             const restartButton = document.getElementById('restart-button');
+            const homeButton = document.getElementById('home-button');
             if (restartButton) {
                 restartButton.style.display = 'block';
+            }
+            if (homeButton) {
+                homeButton.style.display = 'block';
             }
             return;
         }
@@ -169,11 +173,51 @@ document.addEventListener('DOMContentLoaded', () => __awaiter(void 0, void 0, vo
         }
         loadQuestion(); // Load the first question
     }
+    function goToHome() {
+        const playerInput = document.getElementById('player-input');
+        const quizContainer = document.getElementById('quiz-container');
+        const finalResults = document.getElementById('final-results');
+        if (playerInput)
+            playerInput.style.display = 'block';
+        if (quizContainer)
+            quizContainer.style.display = 'none';
+        if (finalResults)
+            finalResults.style.display = 'none';
+        const playerNameInput = document.getElementById('player-name');
+        if (playerNameInput) {
+            playerNameInput.value = ''; // Clear the player name input
+        }
+        const nameError = document.getElementById('name-error');
+        if (nameError) {
+            nameError.style.display = 'none'; // Hide the name error message
+        }
+        // Hide restart and home buttons
+        const restartButton = document.getElementById('restart-button');
+        const homeButton = document.getElementById('home-button');
+        if (restartButton) {
+            restartButton.style.display = 'none';
+        }
+        if (homeButton) {
+            homeButton.style.display = 'none';
+        }
+        // Reset quiz state
+        currentQuestionIndex = 0;
+        questionService.askedQuestions = [];
+        if (scoringService) {
+            scoringService.reset();
+        }
+    }
     // Add event listener to the restart button
     const restartButton = document.getElementById('restart-button');
     if (restartButton) {
         restartButton.addEventListener('click', restartQuiz);
         restartButton.style.display = 'none'; // Hide the button initially
+    }
+    // Add event listener to the home button
+    const homeButton = document.getElementById('home-button');
+    if (homeButton) {
+        homeButton.addEventListener('click', goToHome);
+        homeButton.style.display = 'none'; // Hide the button initially
     }
     ui.initializeEventListeners();
 }));

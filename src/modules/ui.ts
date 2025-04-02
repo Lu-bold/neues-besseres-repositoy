@@ -5,4 +5,5 @@ export class UI {
     public startQuiz(): void {}
     public nextQuestion(): void {}
     public restartQuiz(): void {}
+    public resetGame(): void {}
 }
