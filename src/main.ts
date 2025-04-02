@@ -1,17 +1,18 @@
 import { UI } from './modules/ui.js';
 import { QuestionService } from './modules/questions.js';
+//import { ScoringService } from './modules/scoring.js';
 
-// DOMContentLoaded event listener: Initializes the quiz after the DOM is fully loaded
 document.addEventListener('DOMContentLoaded', async () => {
     const ui = new UI();
     const questionService = new QuestionService();
+    const totalQuestions = 10; // Set the total number of questions
+    const scoringService = new ScoringService(totalQuestions);
 
     await questionService.fetchQuestions();
 
     const nameForm = document.getElementById('name-form');
 
     if (nameForm) {
-        // Event listener for the name form submission
         nameForm.addEventListener('submit', (event) => {
             event.preventDefault();
 
@@ -27,31 +28,61 @@ document.addEventListener('DOMContentLoaded', async () => {
             const playerInput = document.getElementById('player-input');
             const quizContainer = document.getElementById('quiz-container');
 
-            // Hide player input and show quiz container
             if (playerInput) playerInput.style.display = 'none';
             if (quizContainer) quizContainer.style.display = 'block';
 
             const playerNameDisplay = quizContainer?.querySelector('.card-title');
             if (playerNameDisplay) playerNameDisplay.textContent = playerName;
 
-            const randomQuestion = questionService.getRandomQuestion();
+            let currentQuestion = questionService.getRandomQuestion();
 
-            if (randomQuestion) {
-                // Set question details
+            if (currentQuestion) {
                 const categoryElement = document.getElementById('question-category');
                 const difficultyElement = document.getElementById('question-difficulty');
                 const questionElement = document.getElementById('question-text');
 
-                if (categoryElement) categoryElement.textContent = randomQuestion.category;
-                if (difficultyElement) difficultyElement.textContent = randomQuestion.difficulty;
-                if (questionElement) questionElement.textContent = randomQuestion.question;
+                if (categoryElement) categoryElement.textContent = currentQuestion.category;
+                if (difficultyElement) difficultyElement.textContent = currentQuestion.difficulty;
+                if (questionElement) questionElement.textContent = currentQuestion.question;
 
                 const optionButtons = document.querySelectorAll('.option');
 
-                // Set option button text
                 optionButtons.forEach((button, index) => {
-                    if (index < randomQuestion.options.length) {
-                        button.textContent = randomQuestion.options[index].toString();
+                    if (currentQuestion && index < currentQuestion.options.length) {
+                        if (currentQuestion) {
+                            button.textContent = currentQuestion.options[index].toString();
+                        }
+
+                        // Add click event listener for each option
+                        button.addEventListener('click', () => {
+                            const selectedAnswer = currentQuestion?.options[index];
+                            if (currentQuestion && selectedAnswer === currentQuestion.answer) {
+                                scoringService.incrementScore(10); // Add 10 points for a correct answer
+                                alert('Correct!');
+                            } else {
+                                alert('Wrong!');
+                            }
+
+                            // Load the next question or show final results
+                            currentQuestion = questionService.getRandomQuestion();
+                            if (currentQuestion) {
+                                if (categoryElement) categoryElement.textContent = currentQuestion.category;
+                                if (difficultyElement) difficultyElement.textContent = currentQuestion.difficulty;
+                                if (questionElement) questionElement.textContent = currentQuestion.question;
+
+                                optionButtons.forEach((btn, idx) => {
+                                    if (currentQuestion && idx < currentQuestion.options.length) {
+                                        btn.textContent = currentQuestion.options[idx].toString();
+                                    }
+                                });
+                            } else {
+                                // Show final results
+                                const finalResults = document.getElementById('final-results');
+                                const scoreDisplay = document.getElementById('score-display');
+                                if (finalResults) finalResults.style.display = 'block';
+                                if (scoreDisplay) scoreDisplay.textContent = `${scoringService.getScore()} / ${totalQuestions * 10}`;
+                            }
+                        });
                     }
                 });
             }
