@@ -14,6 +14,15 @@ document.addEventListener('DOMContentLoaded', async () => {
     const nameForm = document.getElementById('name-form');
     let currentQuestionIndex = 0; // Track the current question index
 
+    // Ensure quizContainer is hidden initially
+    const playerInput = document.getElementById('player-input');
+    const quizContainer = document.getElementById('quiz-container');
+    
+    if (quizContainer && playerInput) {
+        quizContainer.style.display = 'none';
+        playerInput.style.display = 'block';
+    }
+
     if (nameForm) {
         nameForm.addEventListener('submit', (event) => {
             event.preventDefault();
@@ -27,13 +36,16 @@ document.addEventListener('DOMContentLoaded', async () => {
                 return;
             }
 
-            const playerInput = document.getElementById('player-input');
-            const quizContainer = document.getElementById('quiz-container');
             const questionContainer = document.getElementById('question-container');
             const optionsContainer = document.getElementById('options-container');
+            const infoContainer = document.getElementById('info-container'); // Get info container
+            const quizContainer = document.getElementById('quiz-container');
 
             if (playerInput) playerInput.style.display = 'none';
             if (quizContainer) quizContainer.style.display = 'block';
+            if (questionContainer) questionContainer.style.display = 'block'; // display question container for new players
+            if (infoContainer) infoContainer.style.display = 'block'; // display info container for new players
+            if (optionsContainer) optionsContainer.style.display = 'block'; // display options container for new players
 
             const playerNameDisplay = quizContainer?.querySelector('.card-title');
             if (playerNameDisplay) playerNameDisplay.textContent = playerName;
@@ -157,7 +169,9 @@ document.addEventListener('DOMContentLoaded', async () => {
         // Reset the quiz state
         currentQuestionIndex = 0;
         questionService.askedQuestions = []; // Reset asked questions
-        scoringService.reset(); // Reset the score, but keep the leaderboard intact
+         if (scoringService) {
+            scoringService.reset();
+        }
 
         const finalResults = document.getElementById('final-results');
         if (finalResults) {
@@ -180,6 +194,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         loadQuestion(); // Load the first question
     }
+
     function goToHome(): void {
         const playerInput = document.getElementById('player-input');
         const quizContainer = document.getElementById('quiz-container');

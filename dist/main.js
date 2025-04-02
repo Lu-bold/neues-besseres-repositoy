@@ -19,6 +19,13 @@ document.addEventListener('DOMContentLoaded', () => __awaiter(void 0, void 0, vo
     yield questionService.fetchQuestions();
     const nameForm = document.getElementById('name-form');
     let currentQuestionIndex = 0; // Track the current question index
+    // Ensure quizContainer is hidden initially
+    const playerInput = document.getElementById('player-input');
+    const quizContainer = document.getElementById('quiz-container');
+    if (quizContainer && playerInput) {
+        quizContainer.style.display = 'none';
+        playerInput.style.display = 'block';
+    }
     if (nameForm) {
         nameForm.addEventListener('submit', (event) => {
             event.preventDefault();
@@ -30,14 +37,20 @@ document.addEventListener('DOMContentLoaded', () => __awaiter(void 0, void 0, vo
                     nameError.style.display = 'block';
                 return;
             }
-            const playerInput = document.getElementById('player-input');
-            const quizContainer = document.getElementById('quiz-container');
             const questionContainer = document.getElementById('question-container');
             const optionsContainer = document.getElementById('options-container');
+            const infoContainer = document.getElementById('info-container'); // Get info container
+            const quizContainer = document.getElementById('quiz-container');
             if (playerInput)
                 playerInput.style.display = 'none';
             if (quizContainer)
                 quizContainer.style.display = 'block';
+            if (questionContainer)
+                questionContainer.style.display = 'block'; // display question container for new players
+            if (infoContainer)
+                infoContainer.style.display = 'block'; // display info container for new players
+            if (optionsContainer)
+                optionsContainer.style.display = 'block'; // display options container for new players
             const playerNameDisplay = quizContainer === null || quizContainer === void 0 ? void 0 : quizContainer.querySelector('.card-title');
             if (playerNameDisplay)
                 playerNameDisplay.textContent = playerName;
@@ -151,7 +164,9 @@ document.addEventListener('DOMContentLoaded', () => __awaiter(void 0, void 0, vo
         // Reset the quiz state
         currentQuestionIndex = 0;
         questionService.askedQuestions = []; // Reset asked questions
-        scoringService.reset(); // Reset the score, but keep the leaderboard intact
+        if (scoringService) {
+            scoringService.reset();
+        }
         const finalResults = document.getElementById('final-results');
         if (finalResults) {
             finalResults.style.display = 'none';
