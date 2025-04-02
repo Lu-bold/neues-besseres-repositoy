@@ -21,35 +21,67 @@ body {
     background-color: #ff8fab; /* Vibrant pink for primary buttons */
     border: none;
     color: white;
+    width: 40%;
+    margin: 0 auto;
+    display: block;
     font-weight: bold;
     transition: background-color 0.3s ease;
 }
 
+/* Primary button hover effect */
 .btn-primary:hover {
     background-color: #fb6f92; /* Slightly darker pink on hover */
+    transform: scale(1.001); /* Make the button slightly bigger */
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2); /* Add a 3D shadow effect */
+    transition: transform 0.3s ease, box-shadow 0.2s ease; /* Smooth transition */
 }
 
 .btn-secondary {
     background-color: #ffb3c6; /* Softer pink for secondary buttons */
     border: none;
     color: white;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
     font-weight: bold;
     transition: background-color 0.3s ease;
 }
 
+/* Secondary button hover effect */
 .btn-secondary:hover {
     background-color: #ff8fab; /* Slightly darker pink on hover */
+    transform: scale(1.1); /* Make the button slightly bigger */
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2); /* Add a 3D shadow effect */
+    transition: transform 0.2s ease, box-shadow 0.2s ease; /* Smooth transition */
 }
+
+/* Primary button active state */
+.btn-primary:active, .btn-primary:focus {
+    background-color: #903245; /* Darker pink for active state */
+    box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.2); /* Add an inset shadow for a pressed effect */
+    outline: none; /* Remove default blue outline */
+}
+
+/* Secondary button active state */
+.btn-secondary:active, .btn-secondary:focus {
+    background-color: #d97a8c; /* Darker pink for active state */
+    box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.2); /* Add an inset shadow for a pressed effect */
+    outline: none; /* Remove default blue outline */
+}/* Primary button active state */
+
 
 /* Input fields */
 input.form-control {
     border: 2px solid #ffb3c6;
     border-radius: 5px;
+    text-align: center;
     padding: 10px;
+    width: 40%;
+    margin: 0 auto;
+    display: block;
+    background-color: #fff1f5; /* Light pink background for input fields */
 }
 
 input.form-control:focus {
-    border-color: #ff8fab;
+    border-color: #ffc5d4;
     box-shadow: 0 0 5px rgba(255, 143, 171, 0.5);
     outline: none;
 }
@@ -84,6 +116,22 @@ input.form-control:focus {
 /* Progress bar */
 .progress-bar {
     background-color: #fb6f92;
+}
+
+.list-group-item, .list-group-item-action {
+    background-color: #ffb3c6;
+    border: 1px solid #d7bdc4;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+    color: #802a40;
+    border-radius: 10px;
+}
+
+.list-group-item:hover, .list-group-item-action:hover {
+    background-color: #ff8fab;
+    transform: scale(1.01);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    color: white;
 }
 
 /* Alerts */
