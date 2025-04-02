@@ -41,6 +41,7 @@
       "answer": 2,
       "difficulty": "hard"
     },
+    
     {
       "category": "Geography",
       "question": "What is the capital of France?",
@@ -83,6 +84,7 @@
       "answer": "Sudan",
       "difficulty": "hard"
     },
+
     {
       "category": "History",
       "question": "In what year did World War II end?",
@@ -125,6 +127,7 @@
       "answer": "The Thirty Years' War",
       "difficulty": "hard"
     },
+
     {
       "category": "Science",
       "question": "What is the chemical symbol for water?",
@@ -167,6 +170,7 @@
       "answer": "Electron",
       "difficulty": "hard"
     },
+
     {
       "category": "Fun",
       "question": "Which of these animals can't jump?",

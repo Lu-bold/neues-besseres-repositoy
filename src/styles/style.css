@@ -16,6 +16,33 @@ body {
     padding: 20px;
 }
 
+.card-title {
+    text-align: center;
+    font-weight: bold;
+    color: #802a40; /* Darker pink for card titles */
+}
+.card-text {
+    text-align: center;
+    color: #802a40; /* Darker pink for card text */
+}
+
+.text-center {
+    text-align: center;
+    color:#802a40 /* Center text for better alignment */
+}
+
+.cat {
+    text-align: center;
+    font-weight: bold;
+    color:#802a40
+}
+
+.dif {
+    text-align: center;
+    font-weight: bold;
+    color:#802a40
+}
+
 /* Buttons */
 .btn-primary {
     background-color: #ff8fab; /* Vibrant pink for primary buttons */

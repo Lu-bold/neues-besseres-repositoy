@@ -77,3 +77,38 @@ ui.restartQuiz = function (): void {
 
 // Initialize the event listeners
 ui.initializeEventListeners();
+
+// Wait for the DOM to load
+document.addEventListener("DOMContentLoaded", () => {
+    const nameForm = document.getElementById("name-form") as HTMLFormElement;
+    const playerNameInput = document.getElementById("player-name") as HTMLInputElement;
+    const nameError = document.getElementById("name-error") as HTMLElement;
+    const playerInputContainer = document.getElementById("player-input") as HTMLElement;
+    const quizContainer = document.getElementById("quiz-container") as HTMLElement;
+    const playerNameDisplay = quizContainer.querySelector(".card-title") as HTMLElement;
+
+    // Handle form submission
+    nameForm.addEventListener("submit", (event) => {
+        event.preventDefault(); // Prevent form from refreshing the page
+
+        const playerName = playerNameInput.value.trim();
+
+        if (playerName === "") {
+            // Show error message if name is empty
+            nameError.style.display = "block";
+        } else {
+            // Hide error message
+            nameError.style.display = "none";
+
+            // Save the player's name in localStorage
+            localStorage.setItem("playerName", playerName);
+
+            // Update the quiz container with the player's name
+            playerNameDisplay.textContent = playerName;
+
+            // Hide the player input container and show the quiz container
+            playerInputContainer.style.display = "none";
+            quizContainer.style.display = "block";
+        }
+    });
+});
