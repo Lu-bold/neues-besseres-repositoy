@@ -14,7 +14,7 @@ export class QuestionService {
     fetchQuestions() {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const response = yield fetch('../data/questions.json');
+                const response = yield fetch('./data/questions.json'); // Adjusted path
                 if (!response.ok) {
                     throw new Error(`Failed to fetch questions: ${response.status}`);
                 }

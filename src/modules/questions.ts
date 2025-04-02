@@ -11,7 +11,7 @@ export class QuestionService {
 
     public async fetchQuestions(): Promise<boolean> {
         try {
-            const response = await fetch('../data/questions.json');
+            const response = await fetch('./data/questions.json'); // Adjusted path
             if (!response.ok) {
                 throw new Error(`Failed to fetch questions: ${response.status}`);
             }
