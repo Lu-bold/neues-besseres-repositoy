@@ -73,7 +73,7 @@
     {
       "category": "Geography",
       "question": "Which country is both in Europe and Asia?",
-      "options": ["Russia", "Egypt", "Turkey", "Greece"],
+      "options": ["England", "Egypt", "Turkey", "Greece"],
       "answer": "Turkey",
       "difficulty": "medium"
     },
